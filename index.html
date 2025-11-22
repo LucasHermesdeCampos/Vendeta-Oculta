@@ -244,6 +244,10 @@
     }
 
     .id-badge {
+      display: block;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
       width: 220px;
       background: var(--blood-dark);
       border: 2px solid var(--blood-border);
@@ -728,126 +732,129 @@
       </p>
     </div>
 
-    <section class="characters-section">
-      <div class="section-header">
-        <h2 class="section-title">Equipe</h2>
+<section class="characters-section">
+  <div class="section-header">
+    <h2 class="section-title">Equipe</h2>
+  </div>
+  <div class="characters-grid">
+
+    <a href="sheet-enzo.html" class="id-badge">
+      <div class="badge-photo">
+        <img src="photo-enzo.png" alt="Enzo">
+        <div class="badge-photo-overlay"></div>
       </div>
-      <div class="characters-grid">
-        <div class="id-badge">
-          <div class="badge-photo">
-            <img src="photo-enzo.png" alt="Enzo">
-            <div class="badge-photo-overlay"></div>
-          </div>
-          <div class="badge-content">
-            <div class="badge-header">
-              <div class="badge-id">Miguel</div>
-              <div class="badge-icon"><i class="fas fa-football"></i></div>
-            </div>
-            <div class="badge-name">Enzo Rocha dos Santos</div>
-            <div class="badge-field badge-origin">
-              <div class="badge-label">Origem</div>
-              <div class="badge-value">Atleta</div>
-            </div>
-            <div class="badge-field badge-class">
-              <div class="badge-label">Classe</div>
-              <div class="badge-value">Sobrevivente</div>
-            </div>
-            <div class="badge-field badge-trail">
-              <div class="badge-label">Trilha</div>
-              <div class="badge-value">Durão</div>
-            </div>
-            <div class="badge-footer">
-              <i class="fas fa-shield-alt"></i> Estágio 2 | NEX 0%
-            </div>
-          </div>
+      <div class="badge-content">
+        <div class="badge-header">
+          <div class="badge-id">Miguel</div>
+          <div class="badge-icon"><i class="fas fa-football"></i></div>
         </div>
-
-        <div class="id-badge">
-          <div class="badge-photo">
-            <div class="badge-photo-overlay"><i class="fas fa-user"></i> Foto 3:4</div>
-          </div>
-          <div class="badge-content">
-            <div class="badge-header">
-              <div class="badge-id">Henry</div>
-              <div class="badge-icon"><i class="fas fa-gear"></i></div>
-            </div>
-            <div class="badge-name">Marcos D. ‎ ‎ ‎ Penha</div>
-            <div class="badge-field badge-origin">
-              <div class="badge-label">Origem</div>
-              <div class="badge-value">Estudante de Mecânica</div>
-            </div>
-            <div class="badge-field badge-class">
-              <div class="badge-label">Classe</div>
-              <div class="badge-value">Sobrevivente</div>
-            </div>
-            <div class="badge-field badge-trail">
-              <div class="badge-label">Trilha</div>
-              <div class="badge-value">Durão</div>
-            </div>
-            <div class="badge-footer">
-              <i class="fas fa-shield-alt"></i> Estágio 2 | NEX 0%
-            </div>
-          </div>
+        <div class="badge-name">Enzo Rocha dos Santos</div>
+        <div class="badge-field badge-origin">
+          <div class="badge-label">Origem</div>
+          <div class="badge-value">Atleta</div>
         </div>
-
-        <div class="id-badge">
-          <div class="badge-photo">
-            <img src="photo-rafael.png" alt="Rafael">
-            <div class="badge-photo-overlay"></div>
-          </div>
-          <div class="badge-content">
-            <div class="badge-header">
-              <div class="badge-id">Kaike</div>
-              <div class="badge-icon"><i class="fas fa-gem"></i></div>
-            </div>
-            <div class="badge-name">Rafael Dornelles</div>
-            <div class="badge-field badge-origin">
-              <div class="badge-label">Origem</div>
-              <div class="badge-value">Geólogo</div>
-            </div>
-            <div class="badge-field badge-class">
-              <div class="badge-label">Classe</div>
-              <div class="badge-value">Sobrevivente</div>
-            </div>
-            <div class="badge-field badge-trail">
-              <div class="badge-label">Trilha</div>
-              <div class="badge-value">Esotérico</div>
-            </div>
-            <div class="badge-footer">
-              <i class="fas fa-shield-alt"></i> Estágio 2 | NEX 0%
-            </div>
-          </div>
+        <div class="badge-field badge-class">
+          <div class="badge-label">Classe</div>
+          <div class="badge-value">Sobrevivente</div>
         </div>
-
-        <div class="id-badge">
-          <div class="badge-photo">
-            <div class="badge-photo-overlay"><i class="fas fa-user"></i> Foto 3:4</div>
-          </div>
-          <div class="badge-content">
-            <div class="badge-header">
-              <div class="badge-id">???</div>
-              <div class="badge-icon"><i class="fas fa-question"></i></div>
-            </div>
-            <div class="badge-name">???</div>
-            <div class="badge-field badge-origin">
-              <div class="badge-label">Origem</div>
-              <div class="badge-value">????</div>
-            </div>
-            <div class="badge-field badge-class">
-              <div class="badge-label">Classe</div>
-              <div class="badge-value">Sobrevivente</div>
-            </div>
-            <div class="badge-field badge-trail">
-              <div class="badge-label">Trilha</div>
-              <div class="badge-value">????</div>
-            </div>
-            <div class="badge-footer">
-              <i class="fas fa-shield-alt"></i> Estágio 2 | NEX ?%
-            </div>
-          </div>
+        <div class="badge-field badge-trail">
+          <div class="badge-label">Trilha</div>
+          <div class="badge-value">Durão</div>
+        </div>
+        <div class="badge-footer">
+          <i class="fas fa-shield-alt"></i> Estágio 2 | NEX 0%
         </div>
       </div>
-    </section>
+    </a>
+
+    <a href="sheet-henry.html" class="id-badge">
+      <div class="badge-photo">
+        <div class="badge-photo-overlay"><i class="fas fa-user"></i> Foto 3:4</div>
+      </div>
+      <div class="badge-content">
+        <div class="badge-header">
+          <div class="badge-id">Henry</div>
+          <div class="badge-icon"><i class="fas fa-gear"></i></div>
+        </div>
+        <div class="badge-name">Marcos D. ‎ ‎ ‎ Penha</div>
+        <div class="badge-field badge-origin">
+          <div class="badge-label">Origem</div>
+          <div class="badge-value">Estudante de Mecânica</div>
+        </div>
+        <div class="badge-field badge-class">
+          <div class="badge-label">Classe</div>
+          <div class="badge-value">Sobrevivente</div>
+        </div>
+        <div class="badge-field badge-trail">
+          <div class="badge-label">Trilha</div>
+          <div class="badge-value">Durão</div>
+        </div>
+        <div class="badge-footer">
+          <i class="fas fa-shield-alt"></i> Estágio 2 | NEX 0%
+        </div>
+      </div>
+    </a>
+
+    <a href="sheet-rafael.html" class="id-badge">
+      <div class="badge-photo">
+        <img src="photo-rafael.png" alt="Rafael">
+        <div class="badge-photo-overlay"></div>
+      </div>
+      <div class="badge-content">
+        <div class="badge-header">
+          <div class="badge-id">Kaike</div>
+          <div class="badge-icon"><i class="fas fa-gem"></i></div>
+        </div>
+        <div class="badge-name">Rafael Dornelles</div>
+        <div class="badge-field badge-origin">
+          <div class="badge-label">Origem</div>
+          <div class="badge-value">Geólogo</div>
+        </div>
+        <div class="badge-field badge-class">
+          <div class="badge-label">Classe</div>
+          <div class="badge-value">Sobrevivente</div>
+        </div>
+        <div class="badge-field badge-trail">
+          <div class="badge-label">Trilha</div>
+          <div class="badge-value">Esotérico</div>
+        </div>
+        <div class="badge-footer">
+          <i class="fas fa-shield-alt"></i> Estágio 2 | NEX 0%
+        </div>
+      </div>
+    </a>
+
+    <a href="sheet-unknown.html" class="id-badge">
+      <div class="badge-photo">
+        <div class="badge-photo-overlay"><i class="fas fa-user"></i> Foto 3:4</div>
+      </div>
+      <div class="badge-content">
+        <div class="badge-header">
+          <div class="badge-id">???</div>
+          <div class="badge-icon"><i class="fas fa-question"></i></div>
+        </div>
+        <div class="badge-name">???</div>
+        <div class="badge-field badge-origin">
+          <div class="badge-label">Origem</div>
+          <div class="badge-value">????</div>
+        </div>
+        <div class="badge-field badge-class">
+          <div class="badge-label">Classe</div>
+          <div class="badge-value">Sobrevivente</div>
+        </div>
+        <div class="badge-field badge-trail">
+          <div class="badge-label">Trilha</div>
+          <div class="badge-value">????</div>
+        </div>
+        <div class="badge-footer">
+          <i class="fas fa-shield-alt"></i> Estágio 2 | NEX ?%
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
 
     <section class="creation-section">
       <h2><i class="fas fa-id-card"></i> Criação de Personagem</h2>
