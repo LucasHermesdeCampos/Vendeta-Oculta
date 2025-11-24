@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de Personagem — Ordem Paranormal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --hellfire-dark: #1a0a05;
+      --hellfire-mid: #3a150a;
+      --hellfire-light: #5a2a15;
+      --hellfire-border: #9a3b1a;
+      --gold-primary: #c5a447;
+      --gold-accent: #e6c35c;
+      --gold-glow: rgba(197, 164, 71, 0.3);
+      --text-light: #f2e8d5;
+      --text-muted: #d0bc9a;
+      --crimson: #8b0000;
+      --shadow: #080202;
+      --infernal-red: #c92a2a;
+      --paper-bg: rgba(10, 5, 2, 0.85);
+      --paper-border: #9a3b1a;
+      --paper-shadow: rgba(0, 0, 0, 0.4);
+    }
+    body {
+      font-family: 'Crimson Text', serif;
+      color: var(--text-light);
+      line-height: 1.6;
+      background: 
+        url("bg.png") center/cover no-repeat,
+        var(--hellfire-dark);
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    /* Header */
+    header {
+      background: var(--hellfire-light);
+      border-bottom: 3px solid var(--gold-primary);
+      padding: 12px 0;
+      position: relative;
+      margin-bottom: 24px;
+      box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.7),
+        0 0 12px var(--gold-glow);
+      border-top: 1px solid rgba(199, 172, 84, 0.4);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold-accent), var(--infernal-red), var(--gold-accent), transparent);
+      box-shadow: 0 0 6px var(--gold-glow);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .back-button {
+      background: var(--gold-primary);
+      color: var(--hellfire-dark);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .back-button:hover {
+      background: var(--gold-accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px var(--gold-glow);
+    }
+    .back-button i { margin-right: 8px; }
+    .character-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 
+        0 0 10px var(--gold-glow),
+        0 0 20px rgba(197, 164, 71, 0.2),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+      background: linear-gradient(to right, var(--text-light), var(--gold-accent), var(--text-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-family: 'Cinzel', serif;
+      flex: 1;
+      text-align: center;
+    }
+    .campaign-logo {
+      width: 120px;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .campaign-logo:hover { transform: scale(1.05); }
+    /* Sheet */
+    .sheet-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .sheet-section {
+      background: var(--paper-bg);
+      border: 2px solid var(--paper-border);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 12px var(--paper-shadow);
+      transition: all 0.3s ease;
+    }
+    .sheet-section:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px var(--paper-shadow);
+    }
+    .section-header {
+      font-size: 1.3rem;
+      color: var(--gold-accent);
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold-primary);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    /* Character Image */
+/* Ajuste CSS para a imagem do personagem ficar quadrada */
+    .character-image {
+      width: 200px;       /* largura fixa */
+      height: 200px;      /* altura igual à largura para ficar quadrado */
+      background: linear-gradient(135deg, var(--hellfire-dark), var(--hellfire-mid));
+      border: 2px solid var(--gold-primary);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      text-align: center;
+      padding: 10px;
+      overflow: hidden; /* para cortar o que ultrapassar */
+    }
+
+    .character-image img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover; /* para preencher sem distorcer */
+      border-radius: 8px;
+    }
+
+    /* Info grid */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .info-box {
+      background: rgba(20, 10, 5, 0.6);
+      border: 1px solid var(--paper-border);
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+    }
+    .info-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-family: 'Cinzel', serif;
+    }
+    .info-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-light);
+      font-family: 'Cinzel', serif;
+    }
+    /* Attributes */
+    .attributes-top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .attributes-bottom {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .attribute-box {
+      background: rgba(20, 10, 5, 0.6);
+      border: 2px solid var(--paper-border);
+      border-radius: 6px;
+      padding: 12px;
+      text-align: center;
+    }
+    .attribute-name {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-family: 'Cinzel', serif;
+    }
+    .attribute-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold-accent);
+    }
+    /* Skills */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+    .skills-table th,
+    .skills-table td {
+      padding: 6px 8px;
+      text-align: left;
+      border: 1px solid var(--paper-border);
+      font-size: 0.85rem;
+    }
+    .skills-table th {
+      background: rgba(30, 15, 8, 0.7);
+      font-family: 'Cinzel', serif;
+      color: var(--gold-accent);
+      font-size: 0.8rem;
+    }
+    .skills-table td {
+      background: rgba(20, 10, 5, 0.5);
+      color: var(--text-light);
+    }
+    .bonus-total {
+      font-weight: 700;
+      color: var(--gold-accent);
+      text-align: center;
+    }
+    .training-cell,
+    .others-cell {
+      text-align: center;
+      font-family: 'Cinzel', serif;
+    }
+    /* Tabs */
+    .tab-nav {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      background: rgba(20, 10, 5, 0.6);
+      border: 1px solid var(--paper-border);
+      color: var(--text-muted);
+      border-radius: 4px 4px 0 0;
+      cursor: pointer;
+      font-family: 'Cinzel', serif;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: var(--gold-primary);
+      color: var(--hellfire-dark);
+      border-color: var(--gold-accent);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* Ability/Item Box */
+    .item-box,
+    .ability-box,
+    .ritual-box {
+      background: rgba(20, 10, 5, 0.6);
+      border: 2px solid var(--paper-border);
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .item-box:hover,
+    .ability-box:hover,
+    .ritual-box:hover {
+      border-color: var(--gold-primary);
+      background: rgba(30, 15, 8, 0.7);
+    }
+    .item-header,
+    .ability-header,
+    .ritual-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+    .item-name,
+    .ability-name,
+    .ritual-name {
+      font-weight: 700;
+      color: var(--text-light);
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+    }
+    .item-meta,
+    .ability-meta,
+    .ritual-meta {
+      display: flex;
+      gap: 6px;
+      font-size: 0.75rem;
+    }
+    .item-tag,
+    .ability-tag,
+    .ritual-tag {
+      background: rgba(0,0,0,0.3);
+      padding: 1px 6px;
+      border-radius: 4px;
+      color: var(--text-muted);
+    }
+    /* Ritual Extra Header */
+    .ritual-extra {
+      background: rgba(0,0,0,0.3);
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ritual-extra-item {
+      display: flex;
+      flex-direction: column;
+      min-width: 140px;
+    }
+    .ritual-extra-label {
+      font-weight: 600;
+      color: var(--gold-accent);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+    .ritual-extra-value {
+      font-weight: 700;
+      color: var(--text-light);
+    }
+    /* Expanded Description */
+    .expanded-description {
+      display: none;
+      background: rgba(5, 2, 1, 0.4);
+      border: 1px solid var(--gold-primary);
+      border-radius: 6px;
+      margin-top: 10px;
+      padding: 14px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .expanded-description h4 {
+      color: var(--gold-accent);
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      margin: 8px 0 6px;
+      letter-spacing: 1px;
+    }
+    .expanded-description p {
+      margin: 6px 0;
+    }
+
+    .ritual-expanded {
+    padding: 12px;
+    margin-top: 10px;
+    }
+    .ritual-grid {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    font-size: 0.88rem;
+    }
+    .ritual-line {
+    margin-bottom: 4px;
+    color: var(--text-light);
+    }
+    .ritual-line strong {
+    color: var(--gold-accent);
+    font-weight: 600;
+    }
+    .ritual-section {
+    margin-bottom: 10px;
+    }
+    .ritual-section strong {
+    color: var(--gold-accent);
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    }
+    .ritual-effect {
+    line-height: 1.4;
+    }
+    /* Responsivo */
+    @media (max-width: 768px) {
+    .ritual-grid {
+        grid-template-columns: 1fr;
+    }
+    }
+
+    /* Ritual Detail Grid */
+    .ritual-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .ritual-detail-item {
+      background: rgba(10, 5, 2, 0.4);
+      padding: 8px;
+      border-radius: 4px;
+      border-left: 3px solid var(--gold-primary);
+    }
+    .ritual-detail-label {
+      font-weight: 600;
+      color: var(--gold-accent);
+      font-size: 0.85rem;
+      margin-bottom: 2px;
+    }
+    .ritual-detail-value {
+      color: var(--text-light);
+      font-size: 0.95rem;
+    }
+    /* Footer note */
+    .footer-note {
+      margin-top: 20px;
+      padding: 12px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--paper-border);
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <a href="index.html" class="back-button">
+          <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <h1 class="character-title">NOME DO PERSONAGEM</h1>
+      </div>
+      <img src="header_vendeta.png" alt="Vendeta Oculta" class="campaign-logo">
+    </header>
+
+    <div class="sheet-container">
+      <!-- Coluna Esquerda: Info Básica + Atributos + Perícias -->
+      <div class="sheet-section">
+        <h2 class="section-header"><i class="fas fa-user"></i> Informações Básicas</h2>
+        <!-- Na área da imagem do personagem, substituir o texto pelo img com classe específica -->
+        <div class="character-image">
+          <img src="portrait-marcos.png" alt="Imagem do Marcos" style="filter: brightness(0) saturate(100%);" />
+        </div>
+        <div class="info-grid">
+          <div class="info-box">
+            <div class="info-label">Origem</div>
+            <div class="info-value">Colegial</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Classe</div>
+            <div class="info-value">Sobrevivente</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Trilha</div>
+            <div class="info-value">Durão</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Nível</div>
+            <div class="info-value">Estágio 2</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">NEX</div>
+            <div class="info-value">0%</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Limite de PE</div>
+            <div class="info-value">1</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">PV Máx</div>
+            <div class="info-value">16</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">PD Máx</div>
+            <div class="info-value">7</div>
+          </div>
+        </div>
+
+        <h2 class="section-header"><i class="fas fa-dice"></i> Atributos</h2>
+        <div class="attributes-top">
+          <div class="attribute-box">
+            <div class="attribute-name">Força</div>
+            <div class="attribute-value">3</div>
+          </div>
+          <div class="attribute-box">
+            <div class="attribute-name">Agilidade</div>
+            <div class="attribute-value">1</div>
+          </div>
+          <div class="attribute-box">
+            <div class="attribute-name">Intelecto</div>
+            <div class="attribute-value">1</div>
+          </div>
+        </div>
+        <div class="attributes-bottom">
+          <div class="attribute-box">
+            <div class="attribute-name">Presença</div>
+            <div class="attribute-value">1</div>
+          </div>
+          <div class="attribute-box">
+            <div class="attribute-name">Vigor</div>
+            <div class="attribute-value">2</div>
+          </div>
+        </div>
+
+        <h2 class="section-header"><i class="fas fa-book-open"></i> Perícias</h2>
+        <table class="skills-table">
+          <thead>
+            <tr>
+              <th>Perícia</th>
+              <th>Bônus</th>
+              <th>Treino</th>
+              <th>Outros</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-treino="0" data-outros="0"><td>Acrobacia</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Adestramento</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Artes</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Atletismo</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="5" data-outros="0"><td>Atualidades</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Ciências</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Crime</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Diplomacia</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Enganação</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="5" data-outros="0"><td>Fortitude</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Furtividade</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Iniciativa</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Intimidação</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Intuição</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Investigação</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="5" data-outros="0"><td>Luta</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Medicina</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Percepção</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Pilotagem</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Pontaria</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Profissão</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Reflexos</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Religião</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Sobrevivência</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="0" data-outros="0"><td>Tática</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="5" data-outros="0"><td>Tecnologia</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+            <tr data-treino="5" data-outros="0"><td>Vontade</td><td class="bonus-total">+0</td><td class="training-cell">Não</td><td class="others-cell">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Coluna Central: Habilidades/Poderes/Rituais -->
+      <div class="sheet-section">
+        <h2 class="section-header"><i class="fas fa-swords"></i> Habilidades & Poderes</h2>
+
+        <div class="tab-nav">
+          <button class="tab-btn active" data-tab="habilidades">Habilidades</button>
+          <button class="tab-btn" data-tab="poderes">Poderes</button>
+          <button class="tab-btn" data-tab="poderes-paranormais">Poderes Paranormal</button>
+          <button class="tab-btn" data-tab="nex-mod">Mod. NEX</button>
+          <button class="tab-btn" data-tab="penalidades">Penalidades</button>
+          <button class="tab-btn" data-tab="rituais">Rituais</button>
+        </div>
+
+        <!-- Habilidades -->
+        <div class="tab-content active" id="habilidades">
+          <div class="ability-box" onclick="toggleDescription(this)" data-description="Esta é a descrição completa da habilidade. Ela pode ser longa e detalhada, explicando como funciona, seus benefícios e qualquer regra especial associada a ela.">
+            <div class="ability-header">
+              <div class="ability-name">Melhor Amigo</div>
+              <div class="ability-meta">
+                <span class="ability-tag">Nível 0</span>
+                <span class="ability-tag">Origem</span>
+                <span class="ability-tag"></span>
+                <span class="ability-tag">SaH p.9</span>
+              </div>
+            </div>
+            <div class="expanded-description">
+              Recebe +2 em Testes de Perícia, enquanto estiver em Alcance Médio e puder trocar olhares com seu Melhor Amigo. Se seu Melhor Amigo morrer, seu total de PD é reduzido em -1 para cada nível até o final da missão.
+            </div>
+          </div>
+
+
+          <div class="ability-box" onclick="toggleDescription(this)" data-description="Esta é a descrição completa da habilidade. Ela pode ser longa e detalhada, explicando como funciona, seus benefícios e qualquer regra especial associada a ela.">
+            <div class="ability-header">
+              <div class="ability-name">Empenho</div>
+              <div class="ability-meta">
+                <span class="ability-tag">Estágio 1</span>
+                <span class="ability-tag">Classe</span>
+                <span class="ability-tag">1 PE</span>
+                <span class="ability-tag">SaH p.31</span>
+              </div>
+            </div>
+            <div class="expanded-description">
+              Quando faz um teste de perícia, você pode gastar 1 PE para receber +2 nesse teste.
+            </div>
+          </div>
+
+          <div class="ability-box" onclick="toggleDescription(this)" data-description="Esta é a descrição completa da habilidade. Ela pode ser longa e detalhada, explicando como funciona, seus benefícios e qualquer regra especial associada a ela.">
+            <div class="ability-header">
+              <div class="ability-name">Durão</div>
+              <div class="ability-meta">
+                <span class="ability-tag">Estágio 2</span>
+                <span class="ability-tag">Classe</span>
+                <span class="ability-tag"></span>
+                <span class="ability-tag">SaH p.31</span>
+              </div>
+            </div>
+            <div class="expanded-description">
+              Recebe +4 PV.
+            </div>
+          </div>
+
+        </div>
+        
+
+        <!-- Poderes -->
+        <div class="tab-content" id="poderes">
+
+        </div>
+
+        <!-- Poderes Paranormais -->
+        <div class="tab-content" id="poderes-paranormais">
+
+        </div>
+
+        <!-- Modificações de NEX -->
+        <div class="tab-content" id="nex-mod">
+
+        </div>
+
+        <!-- Penalidades -->
+        <div class="tab-content" id="penalidades">
+
+        </div>
+
+                           <!-- Rituais -->
+<div class="tab-content" id="rituais">
+  <div class="ritual-extra">
+    <div class="ritual-extra-item">
+      <span class="ritual-extra-label">DT de Ritual</span>
+      <span class="ritual-extra-value">12</span>
+    </div>
+    <div class="ritual-extra-item">
+      <span class="ritual-extra-label">Afinidade</span>
+      <span class="ritual-extra-value">N/A</span>
+    </div>
+  </div>
+
+</div>
+      </div>
+
+      <!-- Coluna Direita: Inventário -->
+      <div class="sheet-section">
+        <h2 class="section-header"><i class="fas fa-box"></i> Inventário</h2>
+
+        <div class="info-grid" style="margin-bottom:16px;">
+          <div class="info-box">
+            <div class="info-label">Prestígio</div>
+            <div class="info-value">0</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Patente</div>
+            <div class="info-value">N/A</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Crédito</div>
+            <div class="info-value">Baixo</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Carga</div>
+            <div class="info-value">2 / 15</div>
+          </div>
+        </div>
+
+        <div class="info-grid" style="margin-bottom:20px;">
+          <div class="info-box">
+            <div class="info-label">Cat. I</div>
+            <div class="info-value">1 / 1</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Cat. II</div>
+            <div class="info-value">0 / 0</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Cat. III</div>
+            <div class="info-value">0 / 0</div>
+          </div>
+          <div class="info-box">
+            <div class="info-label">Cat. IV</div>
+            <div class="info-value">0 / 0</div>
+          </div>
+        </div>
+
+        <div class="item-box" onclick="toggleDescription(this)" data-description="Descrição completa do item. Pode ser longa e detalhada, explicando seu uso, benefícios, restrições e qualquer regra especial associada a ele.">
+          <div class="item-header">
+            <div class="item-name">Cicatrizante</div>
+            <div class="item-meta">
+              <span class="item-tag">Cat. I</span>
+              <span class="item-tag">Espaço: 1</span>
+            </div>
+          </div>
+          <div class="expanded-description">
+            Recupera 2d8+2 Pontos de Vida.
+          </div>
+        </div>
+
+        <div class="item-box" onclick="toggleDescription(this)" data-description="Kit médico básico. Contém ataduras, antisséptico, analgésicos e ferramentas para curativos simples. Pode ser usado para tratar ferimentos leves ou estabilizar aliados.">
+          <div class="item-header">
+            <div class="item-name">Soqueira</div>
+            <div class="item-meta">
+              <span class="item-tag">Cat. 0</span>
+              <span class="item-tag">Espaço: 1</span>
+            </div>
+          </div>
+          <div class="expanded-description">
+            Aumenta em +1 o Dano com Ataques Desarmados.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Este é um conteúdo não oficial de Ordem Paranormal, produzido por um fã para fins educacionais e de entretenimento. Todos os direitos das regras, conceitos e artes relacionados pertencem à Jambô Editora e ao Ordem Paranormal RPG de Cellbit.
+    </div>
+  </div>
+
+  <script>
+    // Atualiza perícias: bônus = treino + outros
+    function initSkills() {
+      document.querySelectorAll('.skills-table tbody tr').forEach(row => {
+        const treino = parseInt(row.dataset.treino) || 0;
+        const outros = parseInt(row.dataset.outros) || 0;
+        const bonus = treino + outros;
+        
+        row.querySelector('.bonus-total').textContent = `+${bonus}`;
+        
+        let treinoText = "Não";
+        if (treino === 5) treinoText = "Treinado";
+        else if (treino === 10) treinoText = "Veterano";
+        else if (treino === 15) treinoText = "Expert";
+        row.querySelector('.training-cell').textContent = treinoText;
+        row.querySelector('.others-cell').textContent = outros;
+      });
+    }
+
+    // Tabs
+    function initTabs() {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+          const id = btn.getAttribute('data-tab');
+          document.getElementById(id).classList.add('active');
+        });
+      });
+    }
+
+    // Toggle description
+function toggleDescription(element) {
+  const desc = element.querySelector('.expanded-description');
+  const isExpanded = desc.style.display === 'block';
+  
+  // Fecha todos os outros expandidos (opcional, mas melhora usabilidade)
+  document.querySelectorAll('.expanded-description').forEach(d => {
+    if (d !== desc) d.style.display = 'none';
+  });
+
+  if (isExpanded) {
+    desc.style.display = 'none';
+  } else {
+    desc.style.display = 'block';
+    
+    // Se for ritual, reconstroi com dados data-*
+    if (element.classList.contains('ritual-box') || element.querySelector('.ritual-expanded')) {
+      const name = element.dataset.name || 'Ritual';
+      const elemento = element.dataset.elemento || '—';
+      const circulo = element.dataset.circulo || '—';
+      const pe = element.dataset.pe || '—';
+      const execucao = element.dataset.execucao || '—';
+      const alcance = element.dataset.alcance || '—';
+      const alvo = element.dataset.alvo || '—';
+      const area = element.dataset.area || '—';
+      const duracao = element.dataset.duracao || '—';
+      const resistencia = element.dataset.resistencia || '—';
+      const efeito = (element.dataset.efeito || '—').replace(/&lt;br&gt;/g, '<br>');
+      const formaDiscente = element.dataset.formaDiscente || '—';
+      const formaVerdadeira = element.dataset.formaVerdadeira || '—';
+
+      desc.innerHTML = `
+        <div class="ritual-grid">
+          <div class="ritual-col ritual-col-meta">
+            <div class="ritual-line"><strong>Elemento:</strong> ${elemento}</div>
+            <div class="ritual-line"><strong>Círculo:</strong> ${circulo}</div>
+            <div class="ritual-line"><strong>PE:</strong> ${pe}</div>
+            <div class="ritual-line"><strong>Execução:</strong> ${execucao}</div>
+            <div class="ritual-line"><strong>Alcance:</strong> ${alcance}</div>
+            <div class="ritual-line"><strong>Alvo:</strong> ${alvo}</div>
+            <div class="ritual-line"><strong>Área:</strong> ${area}</div>
+            <div class="ritual-line"><strong>Duração:</strong> ${duracao}</div>
+            <div class="ritual-line"><strong>Resistência:</strong> ${resistencia}</div>
+          </div>
+          <div class="ritual-col ritual-col-text">
+            <div class="ritual-section">
+              <strong>Efeito:</strong><br>
+              <span class="ritual-effect">${efeito}</span>
+            </div>
+            <div class="ritual-section">
+              <strong>Forma Discente:</strong><br>
+              <span>${formaDiscente}</span>
+            </div>
+            <div class="ritual-section">
+              <strong>Forma Verdadeira:</strong><br>
+              <span>${formaVerdadeira}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  }
+}
+
+    // Inicializa tudo
+    document.addEventListener('DOMContentLoaded', () => {
+      initSkills();
+      initTabs();
+    });
+  </script>
+</body>
+</html>
+
+
+
